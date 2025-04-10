@@ -24,40 +24,44 @@
                     <div class="card-header bg-dark">
                         <h3 class="text-white">Create Product</h3>
                     </div>
-                    <form enctype="multipart/form-data" action="{{ route('products.store') }}" method="post">
+                    <form enctype="multipart/form-data" action="{{ route('products.update', $product->id)}}" method="post">
+                        @method('put')
                         @csrf
                         <div class="card-body">
                             <div class="mb-3">
                                 <label for="" class="form-label h6">Name</label>
-                                <input type="text" value="{{ old('name') }}" class=" @error('name') is-invalid @enderror form-control form-control-md" placeholder="Name" name="name">
+                                <input type="text" value="{{ old('name',$product->name)}}" class=" @error('name') is-invalid @enderror form-control form-control-md" placeholder="Name" name="name">
                                 @error('name')
                                 <p class="invalid-feedback">{{ $message }}</p>
                                 @enderror
                             </div>
                             <div class="mb-3">
                                 <label for="" class="form-label h6">Sku</label>
-                                <input type="text" value="{{ old('sku') }}" class="@error('sku') is-invalid @enderror form-control form-control-md" placeholder="Sku" name="sku">
+                                <input type="text" value="{{ old('sku', $product->sku)}}" class="@error('sku') is-invalid @enderror form-control form-control-md" placeholder="Sku" name="sku">
                                 @error('sku')
                                 <p class="invalid-feedback">{{ $message }}</p>
                                 @enderror
                             </div>
                             <div class="mb-3">
                                 <label for="" class="form-label h6">Price</label>
-                                <input type="text" value="{{ old('price') }}" class="@error('price') is-invalid @enderror form-control form-control-md" placeholder="Price" name="price">
+                                <input type="text" value="{{ old('price', $product->price)}}" class="@error('price') is-invalid @enderror form-control form-control-md" placeholder="Price" name="price">
                                 @error('price')
                                 <p class="invalid-feedback">{{ $message }}</p>
                                 @enderror
                             </div>
                             <div class="mb-3">
                                 <label for="" class="form-label h6">Description</label>
-                                <textarea class="form-control form-control-md" cols="30" rows="5" placeholder="Description" name="description">{{ old('description') }}</textarea>
+                                <textarea class="form-control form-control-md" cols="30" rows="5" placeholder="Description" name="description">{{ old('description', $product->description) }}</textarea>
                             </div>
                             <div class="mb-3">
                                 <label for="" class="form-label h6">Image</label>
                                 <input type="file" class="form-control form-control-md" name="image">
+                                @if ($product->image != "")
+                                <img src="{{ asset('uploads/products/' . $product->image) }}" alt="" width="50%" height="50%" class="rounded my-3">
+                                @endif
                             </div>
                             <div class="d-grid">
-                                <button class="btn btn-md btn-success">Submit</button>
+                                <button class="btn btn-md btn-success">Update</button>
                             </div>
                         </div>
                     </form>
