@@ -32,32 +32,22 @@
                             </div>
                         </div>
                         @endif
-                        @if ($products->isNotEmpty())
-                        @foreach ($products as $product)
+
                         <div class="row">
-                            <div class="col-lg-12 col-md-12">
+                            <div class="col-lg-6 col-md-6">
                                 @if ($product->image != "")
-                                <img src="{{ asset('uploads/products/' . $product->image) }}" alt="" width="50%" height="50%" class="rounded">
+                                <img src="{{ asset('uploads/products/' . $product->image) }}" alt="" class="rounded img-fluid" >
                                 @endif
                             </div>
                             <div class="col-lg-4">
-                                <p>Product Name: - {{ $product->name }}</p>
-                            </div>
-                            <div class="col-lg-4">
-                                <p>Product SKU: - {{ $product->sku }}</p>
-                            </div>
-                            <div class="col-lg-4">
-                                <p>Product Price :- {{ $product->price }} </p>
-                            </div>
-                            <div class="col-lg-12">
-                                <p>Product Description :- {{ $product->description }}</p>
+                                <p><strong>Product Name: - </strong> {{ $product->name }}</p>
+                                <p><strong>Product SKU: - </strong> {{ $product->sku }}</p>
+                                <p><strong>Product Price :- </strong> {{ $product->price }}</p>
+                                <p><strong>Product Description :- </strong> {{ $product->description }}</p>
                             </div>
                         </div>
-                        @endforeach
-                        @else
-                        <div class="alert alert-danger">No Product Found</div>
-                        @endif
                     </div>
+
                 </div>
             </div>
         </div>
