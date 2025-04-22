@@ -11,6 +11,23 @@ use Symfony\Component\HttpFoundation\RequestStack;
 
 class ProductController extends Controller
 {
+
+  public function register(Request $loginRequest)
+  
+  {
+    $data = $loginRequest->validate([
+      'name' => 'required',
+      'email' => 'required|email',
+      'password' => 'required|confirmed',
+    ]);
+
+    $user = Product::create($data);
+    if ($user) {
+      return redirect()->route('login')->with('success', 'Registration successful. Please login.');
+
+  }
+}
+
   public function index()
   {
     $products = Product::orderBy('created_at', 'DESC')->get();

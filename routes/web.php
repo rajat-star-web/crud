@@ -16,3 +16,6 @@ Route::get('/products/{product}/edit',[ProductController::class,'edit'])->name('
 Route::put('/products/{product}',[ProductController::class,'update'])->name('products.update');
 Route::delete('/products/{product}',[ProductController::class,'destroy'])->name('products.destroy');
 Route::get('/products/{product}',[ProductController::class,'view'])->name('products.view');
+Route::view('/auth/login','auth.login')->name('login');
+Route::view('/auth/register','auth.register')->name('register');
+Route::post('/auth/register',[ProductController::class,'register'])->name('register.post'); 
